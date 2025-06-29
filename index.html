@@ -22,29 +22,29 @@
       <section>
         <form>
           <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label"
+            <label for="finance-amount" class="col-sm-2 col-form-label"
               >The amount you want to finance:</label
             >
             <div class="col-sm-6">
-              <input type="number" class="form-control" id="inputEmail3" />
+              <input type="number" class="form-control" id="finance-amount" />
             </div>
           </div>
 
           <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label"
-              >The monthly payment you do not to exceed:</label
+            <label for="max-mon-payment" class="col-sm-2 col-form-label"
+              >The monthly payment you do not want to exceed:</label
             >
             <div class="col-sm-6">
-              <input type="number" class="form-control" id="inputEmail3" />
+              <input type="number" class="form-control" id="max-mon-payment" />
             </div>
           </div>
 
           <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label"
+            <label for="annual-interest" class="col-sm-2 col-form-label"
               >The lender's annual interest rate (e.g. 3.00%)</label
             >
             <div class="col-sm-6">
-              <input type="number" class="form-control" id="inputPassword3" />
+              <input type="number" class="form-control" id="annual-interest" />
             </div>
           </div>
 
@@ -58,7 +58,7 @@
             <p>Number of monthly payments: <span>3</span></p>
 
             <span>
-              <button type="button" class="btn btn-primary btn-lg">
+              <button data-type="calcOnUserSelection" class="btn btn-primary btn-lg">
                 Calculate Number of Payments
               </button>
             </span>
@@ -71,7 +71,7 @@
             min="1"
             max="60"
             step="1.0"
-            id="customRange3"
+            id="payment-intervals"
           />
 
           <fieldset class="row mb-3">
@@ -81,12 +81,12 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="gridRadios"
-                  id="gridRadios1"
+                  name="adjustPmtOnUserSelection"
+                  id="adjustPmtOnUserSelection"
                   value="option1"
                   checked
                 />
-                <label class="form-check-label" for="gridRadios1">
+                <label class="form-check-label" for="adjustPmtOnUserSelection">
                   Adjust maximum payment based on calculated number of payments
                   above
                 </label>
@@ -95,11 +95,11 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="gridRadios"
-                  id="gridRadios2"
+                  name="adjustPmtIntervalsDown"
+                  id="adjustPmtIntervalsDown"
                   value="option2"
                 />
-                <label class="form-check-label" for="gridRadios2">
+                <label class="form-check-label" for="adjustPmtIntervalsDown">
                   Adjust max payment down to nearest 12 mon interval based on
                   calculated number of payments above
                 </label>
@@ -108,11 +108,11 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="gridRadios"
-                  id="gridRadios3"
+                  name="adjustPmtIntervalsUp"
+                  id="adjustPmtIntervalsUp"
                   value="option3"
                 />
-                <label class="form-check-label" for="gridRadios3">
+                <label class="form-check-label" for="adjustPmtIntervalsUp">
                   Adjust max payment up to nearest 12 mon interval based on
                   calculated number of payments above
                 </label>
@@ -121,7 +121,7 @@
           </fieldset>
 
           <span>
-            <button type="button" class="btn btn-primary btn-lg">
+            <button data-type="adjustMaxMonPmt" class="btn btn-primary btn-lg">
               Adjust Terms
             </button>
           </span>
@@ -143,5 +143,7 @@
         </form>
       </section>
     </main>
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
