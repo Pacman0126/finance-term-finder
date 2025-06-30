@@ -67,16 +67,15 @@
             </span>
           </div>
           <!-- range input slider  -->
-          <!-- <label for="customRange3" class="form-label">Example range</label>
-          <input
-            type="range"
-            class="form-range"
-            min="1"
-            max="60"
-            step="1.0"
-            id="payment-intervals"
-          /> -->
+          <!-- <label id="intervals" for="payment-intervals" class="form-label"
+            >Example range</label
+          > -->
+
           <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div id="intervals" class="col-auto">n</div>
+            </div>
+
             <div class="row justify-content-center">
               <div id="min-value" class="col-1 text-end">1</div>
 
@@ -89,7 +88,6 @@
                   step="1.0"
                   value="30"
                   id="payment-intervals"
-                  oninput="this.nextElementSibling.value = this.value"
                 />
               </div>
               <div id="max-value" class="col-1">60</div>

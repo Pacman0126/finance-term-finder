@@ -3,18 +3,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let button of buttons) {
         button.addEventListener("click", function () {
-
+            
             let computeAction = this.getAttribute("data-type");
             calculateTerms(computeAction);
 
         })
     }
+    // configure range slider events
+    let rangeLabel = document.getElementById("intervals");
+    let rangeInput = document.getElementById("payment-intervals");
+    rangeInput.addEventListener("input", function () {
+        rangeLabel.innerText = rangeInput.value;
+
+    }, false);
+
 })
+
+
 function calculateTerms(selectComputeAction) {
 
+    
+    let rangeLabel = document.getElementById("intervals");
     switch (selectComputeAction) {
         case "calcOnUserSelection":
-            calculateNumberOfPayments();
+            rangeLabel.innerText = calculateNumberOfPayments();
             break;
         case "adjustMaxMonPmt":
             // code block
@@ -47,6 +59,7 @@ function calculateNumberOfPayments() {
         PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
 
         if (PtoARatio >= targetPtoARatio) {
+
 
             return paymentIntervals + 1
 
