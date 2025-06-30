@@ -58,13 +58,16 @@
             <p>Number of monthly payments: <span>3</span></p>
 
             <span>
-              <button data-type="calcOnUserSelection" class="btn btn-primary btn-lg">
+              <button
+                data-type="calcOnUserSelection"
+                class="btn btn-primary btn-lg"
+              >
                 Calculate Number of Payments
               </button>
             </span>
           </div>
-
-          <label for="customRange3" class="form-label">Example range</label>
+          <!-- range input slider  -->
+          <!-- <label for="customRange3" class="form-label">Example range</label>
           <input
             type="range"
             class="form-range"
@@ -72,10 +75,30 @@
             max="60"
             step="1.0"
             id="payment-intervals"
-          />
+          /> -->
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div id="min-value" class="col-1 text-end">1</div>
 
+              <div class="col-auto">
+                <!-- https://stackoverflow.com/questions/77067432/how-to-show-bootstrap-ranges-min-max-value-before-and-after-range-slider -->
+                <input
+                  type="range"
+                  min="1"
+                  max="60"
+                  step="1.0"
+                  value="30"
+                  id="payment-intervals"
+                  oninput="this.nextElementSibling.value = this.value"
+                />
+              </div>
+              <div id="max-value" class="col-1">60</div>
+            </div>
+          </div>
           <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Make adjustments to max monthly payments:</legend>
+            <legend class="col-form-label col-sm-2 pt-0">
+              Make adjustments to max monthly payments:
+            </legend>
             <div class="col-sm-10">
               <div class="form-check">
                 <input
@@ -139,7 +162,6 @@
               </div>
             </div>
           </div> -->
-
         </form>
       </section>
     </main>

@@ -29,6 +29,7 @@ function calculateTerms(selectComputeAction) {
  * A = monthly payment
  * annualInterestRate = lender's annaul interest rate
  * paymentIntervals = number of payments
+ * based on formula FV = PV(1+i)^n
  */
 function calculateNumberOfPayments() {
 
@@ -36,7 +37,7 @@ function calculateNumberOfPayments() {
     let A = parseFloat(document.getElementById("max-mon-payment").value);
     let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
 
-    let targetPtoARatio = Math.log(PV / A);
+    let targetPtoARatio = Math.log(PV / A); //rearrange financial equation and target this ratio of principal to monthly payment
 
     let paymentIntervals = 2;
     let PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
@@ -46,7 +47,8 @@ function calculateNumberOfPayments() {
         PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
 
         if (PtoARatio >= targetPtoARatio) {
-            return paymentIntervals
+
+            return paymentIntervals + 1
 
         }
     }
