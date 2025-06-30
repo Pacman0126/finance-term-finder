@@ -2,31 +2,43 @@ document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function () {
-            
-            let computeAction = this.getAttribute("data-type");
-            calculateTerms(computeAction);
-
-        })
+        button.addEventListener("click", calculateTerms);
     }
     // configure range slider events
     let rangeLabel = document.getElementById("intervals");
     let rangeInput = document.getElementById("payment-intervals");
     rangeInput.addEventListener("input", function () {
         rangeLabel.innerText = rangeInput.value;
-
+        calculateMonthlyPayment();
     }, false);
 
 })
 
 
-function calculateTerms(selectComputeAction) {
+function calculateTerms(e) {
 
-    
+    e.preventDefault();
+    let computeAction = this.getAttribute("data-type");
     let rangeLabel = document.getElementById("intervals");
-    switch (selectComputeAction) {
+    let paymentIntervals = document.getElementById("calculatedIntervals");
+    let rangeSliderBar = document.getElementById("payment-intervals");
+
+    switch (computeAction) {
         case "calcOnUserSelection":
             rangeLabel.innerText = calculateNumberOfPayments();
+            paymentIntervals.innerText = rangeLabel.innerText;
+            rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+            let rangeMin = Math.floor((parseFloat(paymentIntervals.innerText)) / 12) * 12;
+            rangeSliderBar.setAttribute('min', rangeMin);
+            let rangeMax = ((rangeMin / 12) + 2) * 12;
+            rangeSliderBar.setAttribute('max', rangeMax);
+            let rangeMinLabel = document.getElementById("min-value");
+            rangeMinLabel.innerText = rangeMin;
+            let rangeMaxLabel = document.getElementById("max-value");
+            rangeMaxLabel.innerText = rangeMax;
+
+
+
             break;
         case "adjustMaxMonPmt":
             // code block
@@ -36,6 +48,22 @@ function calculateTerms(selectComputeAction) {
     }
 
 }
+function calculateMonthlyPayment() {
+
+    let PV = parseFloat(document.getElementById("finance-amount").value);
+    let rangeLabel = document.getElementById("intervals");
+    let paymentIntervals = rangeLabel.innerText;
+    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+    let monthlyPayment = document.getElementById("max-mon-payment");
+
+    let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+    monthlyPayment.value = A.toFixed(2);
+
+
+}
+
+
+
 /**
  * PV = present value i.e. principal
  * A = monthly payment
