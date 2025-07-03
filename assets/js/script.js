@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
-    let rangeLabel = document.getElementById("intervals");
-    let rangeInput = document.getElementById("payment-intervals");
+    //let rangeLabel = document.getElementById("intervals");
+    let rangeInput = document.getElementById("paymentIntervals");
+//let rangeInput = document.querySelector('input');
+//calculateMonthlyPayment();
+ rangeInput.addEventListener("input", updateMonpayment);
 
 
     for (let button of buttons) {
@@ -9,12 +12,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // configure range slider events
 
-    rangeInput.addEventListener("input", function () {
-        rangeLabel.innerText = rangeInput.value;
-        calculateMonthlyPayment();
-    }, false);
+    // rangeInput.addEventListener("input", function () {
+    //     rangeLabel.innerText = rangeInput.value;
+    //     calculateMonthlyPayment();
+    // });
+
+   
 
 })
+
+function updateMonpayment(e) {
+//alert("working");
+        e.preventDefault();
+        let PV = parseFloat(document.getElementById("finance-amount").value);
+        let rangeLabel = document.getElementById("intervals");
+        let paymentIntervals = rangeLabel.innerText;
+        let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+        let monthlyPayment = document.getElementById("max-mon-payment");
+
+        let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+        monthlyPayment.value = A.toFixed(2);
+}
 
 
 function calculateTerms(e) {
@@ -23,7 +41,7 @@ function calculateTerms(e) {
     let computeAction = this.getAttribute("data-type");
     let rangeLabel = document.getElementById("intervals");
     let paymentIntervals = document.getElementById("calculatedIntervals");
-    let rangeSliderBar = document.getElementById("payment-intervals");
+    let rangeSliderBar = document.getElementById("paymentIntervals");
 
     switch (computeAction) {
         case "calcOnUserSelection":
@@ -74,56 +92,62 @@ function calculateTerms(e) {
         // code block
 
 
-}
- function calculateMonthlyPayment(e) {
-
-    let PV = parseFloat(document.getElementById("finance-amount").value);
-    let rangeLabel = document.getElementById("intervals");
-    let paymentIntervals = rangeLabel.innerText;
-    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
-    let monthlyPayment = document.getElementById("max-mon-payment");
-
-    let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
-    monthlyPayment.value = A.toFixed(2);
-
-
-}
-
-
-/**
- * PV = present value i.e. principal
- * A = monthly payment
- * annualInterestRate = lender's annaul interest rate
- * paymentIntervals = number of payments
- * based on formula FV = PV(1+i)^n
- */
-function calculateNumberOfPayments() { 
-
-    let PV = parseFloat(document.getElementById("finance-amount").value);
-    let A = parseFloat(document.getElementById("max-mon-payment").value);
-    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
-
-    let targetPtoARatio = Math.log(PV / A); //rearrange financial equation and target this ratio of principal to monthly payment
-
-    let paymentIntervals = 2;
-    let PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
-
-    while (PtoARatio <= targetPtoARatio) {
-        paymentIntervals++;
-        PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
-
-        if (PtoARatio >= targetPtoARatio) {
-
-
-            return paymentIntervals + 1
-
-        }
     }
 
+    function calculateMonthlyPayment() {
+       // e.preventDefault();
+        let PV = parseFloat(document.getElementById("finance-amount").value);
+        let rangeLabel = document.getElementById("intervals");
+        let paymentIntervals = rangeLabel.innerText;
+        let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+        let monthlyPayment = document.getElementById("max-mon-payment");
+
+        let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+        monthlyPayment.value = A.toFixed(2);
+
+        //return;
+
+    }
+
+    function computeMonthly() {
+
+        
+    }
+
+    /**
+     * PV = present value i.e. principal
+     * A = monthly payment
+     * annualInterestRate = lender's annaul interest rate
+     * paymentIntervals = number of payments
+     * based on formula FV = PV(1+i)^n
+     */
+    function calculateNumberOfPayments() {
+
+        let PV = parseFloat(document.getElementById("finance-amount").value);
+        let A = parseFloat(document.getElementById("max-mon-payment").value);
+        let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+
+        let targetPtoARatio = Math.log(PV / A); //rearrange financial equation and target this ratio of principal to monthly payment
+
+        let paymentIntervals = 2;
+        let PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
+
+        while (PtoARatio <= targetPtoARatio) {
+            paymentIntervals++;
+            PtoARatio = Math.log(paymentIntervals) - Math.log(1 + ((annualInterestRate * .01) / paymentIntervals));
+
+            if (PtoARatio >= targetPtoARatio) {
+
+
+                return paymentIntervals + 1;
+
+            }
+        }
 
 
 
-}
+
+    }
 
 
 }
