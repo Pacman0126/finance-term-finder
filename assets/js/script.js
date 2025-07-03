@@ -75,7 +75,7 @@ function calculateTerms(e) {
 
 
 }
- function calculateMonthlyPayment() {
+ function calculateMonthlyPayment(e) {
 
     let PV = parseFloat(document.getElementById("finance-amount").value);
     let rangeLabel = document.getElementById("intervals");
