@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
+    let rangeLabel = document.getElementById("intervals");
+    let rangeInput = document.getElementById("payment-intervals");
+
 
     for (let button of buttons) {
         button.addEventListener("click", calculateTerms);
     }
     // configure range slider events
-    let rangeLabel = document.getElementById("intervals");
-    let rangeInput = document.getElementById("payment-intervals");
+
     rangeInput.addEventListener("input", function () {
         rangeLabel.innerText = rangeInput.value;
         calculateMonthlyPayment();
@@ -41,6 +43,8 @@ function calculateTerms(e) {
             let rangeMaxLabel = document.getElementById("max-value");
             rangeMaxLabel.innerText = rangeMax;
 
+
+
             break;
         case "adjustMaxMonPmt":
             // code block
@@ -68,10 +72,10 @@ function calculateTerms(e) {
             break;
         default:
         // code block
-    }
+
 
 }
-function calculateMonthlyPayment() {
+ function calculateMonthlyPayment() {
 
     let PV = parseFloat(document.getElementById("finance-amount").value);
     let rangeLabel = document.getElementById("intervals");
@@ -85,6 +89,7 @@ function calculateMonthlyPayment() {
 
 }
 
+
 /**
  * PV = present value i.e. principal
  * A = monthly payment
@@ -92,7 +97,7 @@ function calculateMonthlyPayment() {
  * paymentIntervals = number of payments
  * based on formula FV = PV(1+i)^n
  */
-function calculateNumberOfPayments() {
+function calculateNumberOfPayments() { 
 
     let PV = parseFloat(document.getElementById("finance-amount").value);
     let A = parseFloat(document.getElementById("max-mon-payment").value);
@@ -114,5 +119,11 @@ function calculateNumberOfPayments() {
 
         }
     }
+
+
+
+
+}
+
 
 }
