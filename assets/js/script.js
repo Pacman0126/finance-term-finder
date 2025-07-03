@@ -28,20 +28,43 @@ function calculateTerms(e) {
             rangeLabel.innerText = calculateNumberOfPayments();
             paymentIntervals.innerText = rangeLabel.innerText;
             rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+
             let rangeMin = Math.floor((parseFloat(paymentIntervals.innerText)) / 12) * 12;
             rangeSliderBar.setAttribute('min', rangeMin);
+
             let rangeMax = ((rangeMin / 12) + 2) * 12;
             rangeSliderBar.setAttribute('max', rangeMax);
+
             let rangeMinLabel = document.getElementById("min-value");
             rangeMinLabel.innerText = rangeMin;
+
             let rangeMaxLabel = document.getElementById("max-value");
             rangeMaxLabel.innerText = rangeMax;
-
-
 
             break;
         case "adjustMaxMonPmt":
             // code block
+            switch (true) {
+
+                case document.getElementById("adjustPmtOnUserSelection").checked:
+
+
+                    break;
+                case document.getElementById("adjustPmtIntervalsDown").checked:
+
+
+                    break;
+
+                case document.getElementById("adjustPmtIntervalsUp").checked:
+
+
+                    break;
+
+
+
+            }
+
+
             break;
         default:
         // code block
@@ -61,8 +84,6 @@ function calculateMonthlyPayment() {
 
 
 }
-
-
 
 /**
  * PV = present value i.e. principal
