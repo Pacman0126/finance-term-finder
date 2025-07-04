@@ -1,38 +1,142 @@
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
-    //let rangeLabel = document.getElementById("intervals");
+    let rangeLabel = document.getElementById("intervals");
     let rangeInput = document.getElementById("paymentIntervals");
-//let rangeInput = document.querySelector('input');
-//calculateMonthlyPayment();
- rangeInput.addEventListener("input", updateMonpayment);
+    let radioButtons = document.querySelectorAll(".form-check-input");
+    //let rangeInput = document.querySelector('input');
+    //calculateMonthlyPayment();
+    //rangeInput.addEventListener("input", updateMonpayment);
 
+    for (let radioButton of radioButtons) {
+        radioButton.addEventListener("click", toggleRadioButtons);
+    }
 
     for (let button of buttons) {
         button.addEventListener("click", calculateTerms);
     }
     // configure range slider events
 
-    // rangeInput.addEventListener("input", function () {
-    //     rangeLabel.innerText = rangeInput.value;
-    //     calculateMonthlyPayment();
-    // });
+    rangeInput.addEventListener("input", function () {
+        rangeLabel.innerText = rangeInput.value;
+        updateMonPayment();
+    });
 
-   
+
 
 })
 
-function updateMonpayment(e) {
-//alert("working");
-        e.preventDefault();
-        let PV = parseFloat(document.getElementById("finance-amount").value);
-        let rangeLabel = document.getElementById("intervals");
-        let paymentIntervals = rangeLabel.innerText;
-        let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
-        let monthlyPayment = document.getElementById("max-mon-payment");
+function toggleRadioButtons(e) {
 
-        let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
-        monthlyPayment.value = A.toFixed(2);
+    let radioButtons = document.querySelectorAll(".form-check-input");
+    // const element = e.currentTarget;
+    // alert(element);
+
+    // const element1 = e.target.id;
+    // alert(element1);
+
+    for (let radioButton of radioButtons) {
+        if (radioButton.checked && (e.target !== radioButton)) {
+            radioButton.checked = false;
+        }
+    }
+
 }
+
+function updateMonPayment() {
+    //alert("working");
+    // e.preventDefault();
+    let PV = parseFloat(document.getElementById("finance-amount").value);
+    let rangeLabel = document.getElementById("intervals");
+    let paymentIntervals = rangeLabel.innerText;
+    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+    let monthlyPayment = document.getElementById("max-mon-payment");
+
+
+    let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+    monthlyPayment.value = A.toFixed(2);
+
+    //let paymentIntervalsElement = document.getElementById("calculatedIntervals");
+    //paymentIntervalsElement.innerText = rangeLabel.innerText;
+
+}
+
+function adjustPaymentScheduleUp() {
+    //alert("working");
+    // e.preventDefault();
+    let PV = parseFloat(document.getElementById("finance-amount").value);
+    let rangeLabel = document.getElementById("intervals");
+    //let paymentIntervals = rangeLabel.innerText;
+    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+    let monthlyPayment = document.getElementById("max-mon-payment");
+    let rangeSliderBar = document.getElementById("paymentIntervals");
+    // let paymentIntervals = document.getElementById("calculatedIntervals").innerText;
+    let paymentIntervals = rangeLabel.innerText;
+    // if (paymentIntervals % 12 !== 0) {
+    //     paymentIntervals = (Math.floor(paymentIntervals / 12)) * 12;
+
+    // } else {
+    paymentIntervals = (Math.floor(paymentIntervals / 12) + 1) * 12;
+    // }
+    //paymentIntervals = (Math.floor(paymentIntervals / 12) + 1) * 12;
+
+    rangeSliderBar.value = paymentIntervals;
+    rangeLabel.innerText = paymentIntervals;
+    let paymentIntervalsElement = document.getElementById("calculatedIntervals");
+    paymentIntervalsElement.innerText = rangeLabel.innerText;
+
+    let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+    monthlyPayment.value = A.toFixed(2);
+}
+
+function adjustPaymentScheduleDown() {
+    //alert("working");
+    // e.preventDefault();
+    let PV = parseFloat(document.getElementById("finance-amount").value);
+    let rangeLabel = document.getElementById("intervals");
+    //let paymentIntervals = rangeLabel.innerText;
+    let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
+    let monthlyPayment = document.getElementById("max-mon-payment");
+    let rangeSliderBar = document.getElementById("paymentIntervals");
+    let paymentIntervals = document.getElementById("calculatedIntervals").innerText;
+
+    // if (paymentIntervals % 12 !== 0) {
+    //     paymentIntervals = (Math.floor(paymentIntervals / 12)) * 12;
+
+    // } else {
+    paymentIntervals = (Math.floor(paymentIntervals / 12) - 1) * 12;
+    // }
+
+
+
+    rangeSliderBar.value = paymentIntervals;
+    rangeLabel.innerText = paymentIntervals;
+    let paymentIntervalsElement = document.getElementById("calculatedIntervals");
+    paymentIntervalsElement.innerText = rangeLabel.innerText;
+
+    let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
+    monthlyPayment.value = A.toFixed(2);
+
+    //update range attributes and labels
+
+    rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+
+    let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
+    rangeSliderBar.setAttribute('min', rangeMin);
+
+    let rangeMax = ((rangeMin / 12) + 4) * 12;
+    rangeSliderBar.setAttribute('max', rangeMax);
+
+    let rangeMinLabel = document.getElementById("min-value");
+    rangeMinLabel.innerText = rangeMin;
+
+    let rangeMaxLabel = document.getElementById("max-value");
+    rangeMaxLabel.innerText = rangeMax;
+
+
+
+}
+
+
 
 
 function calculateTerms(e) {
@@ -69,16 +173,16 @@ function calculateTerms(e) {
             switch (true) {
 
                 case document.getElementById("adjustPmtOnUserSelection").checked:
-
+                    updateMonPayment();
 
                     break;
                 case document.getElementById("adjustPmtIntervalsDown").checked:
-
-
+                    adjustPaymentScheduleDown();
                     break;
 
                 case document.getElementById("adjustPmtIntervalsUp").checked:
 
+                    adjustPaymentScheduleUp();
 
                     break;
 
@@ -95,7 +199,7 @@ function calculateTerms(e) {
     }
 
     function calculateMonthlyPayment() {
-       // e.preventDefault();
+        // e.preventDefault();
         let PV = parseFloat(document.getElementById("finance-amount").value);
         let rangeLabel = document.getElementById("intervals");
         let paymentIntervals = rangeLabel.innerText;
@@ -109,10 +213,7 @@ function calculateTerms(e) {
 
     }
 
-    function computeMonthly() {
 
-        
-    }
 
     /**
      * PV = present value i.e. principal
