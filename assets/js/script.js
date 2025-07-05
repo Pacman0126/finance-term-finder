@@ -55,8 +55,9 @@ function updateMonPayment() {
     let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
     monthlyPayment.value = A.toFixed(2);
 
-    //let paymentIntervalsElement = document.getElementById("calculatedIntervals");
-    //paymentIntervalsElement.innerText = rangeLabel.innerText;
+    updateRange();
+    let paymentIntervalsElement = document.getElementById("calculatedIntervals");
+    paymentIntervalsElement.innerText = rangeLabel.innerText;
 
 }
 
@@ -91,21 +92,21 @@ function adjustPaymentScheduleUp() {
 
     //update range attributes and labels
 
-    rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+    // rangeSliderBar.setAttribute('value', rangeLabel.innerText);
 
-    let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
+    // let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
 
-    rangeSliderBar.setAttribute('min', rangeMin);
+    // rangeSliderBar.setAttribute('min', rangeMin);
 
-    let rangeMax = ((rangeMin / 12) + 3) * 12;
-    rangeSliderBar.setAttribute('max', rangeMax);
+    // let rangeMax = ((rangeMin / 12) + 3) * 12;
+    // rangeSliderBar.setAttribute('max', rangeMax);
 
-    let rangeMinLabel = document.getElementById("min-value");
-    rangeMinLabel.innerText = rangeMin;
+    // let rangeMinLabel = document.getElementById("min-value");
+    // rangeMinLabel.innerText = rangeMin;
 
-    let rangeMaxLabel = document.getElementById("max-value");
-    rangeMaxLabel.innerText = rangeMax;
-
+    // let rangeMaxLabel = document.getElementById("max-value");
+    // rangeMaxLabel.innerText = rangeMax;
+    updateRange();
 
 }
 
@@ -140,7 +141,37 @@ function adjustPaymentScheduleDown() {
 
     //update range attributes and labels
 
+    // rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+
+    // let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
+
+    // if (rangeMin < 12) {
+    //     rangeMin = 12;
+    // }
+    // rangeSliderBar.setAttribute('min', rangeMin);
+
+    // let rangeMax = ((rangeMin / 12) + 3) * 12;
+    // rangeSliderBar.setAttribute('max', rangeMax);
+
+    // let rangeMinLabel = document.getElementById("min-value");
+    // rangeMinLabel.innerText = rangeMin;
+
+    // let rangeMaxLabel = document.getElementById("max-value");
+    // rangeMaxLabel.innerText = rangeMax;
+
+    updateRange();
+
+}
+
+function updateRange() {
+
+    //update range attributes and labels
+    let rangeSliderBar = document.getElementById("paymentIntervals");
+    let rangeLabel = document.getElementById("intervals");
     rangeSliderBar.setAttribute('value', rangeLabel.innerText);
+
+    let paymentIntervals = rangeSliderBar.value;
+
 
     let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
 
@@ -158,11 +189,7 @@ function adjustPaymentScheduleDown() {
     let rangeMaxLabel = document.getElementById("max-value");
     rangeMaxLabel.innerText = rangeMax;
 
-
-
 }
-
-
 
 
 function calculateTerms(e) {
@@ -180,17 +207,19 @@ function calculateTerms(e) {
             paymentIntervals.innerText = rangeLabel.innerText;
 
 
-            let rangeMin = Math.floor((parseFloat(paymentIntervals.innerText)) / 12 - 1) * 12;
-            rangeSliderBar.setAttribute('min', rangeMin);
+            // let rangeMin = Math.floor((parseFloat(paymentIntervals.innerText)) / 12 - 1) * 12;
+            // rangeSliderBar.setAttribute('min', rangeMin);
 
-            let rangeMax = ((rangeMin / 12) + 3) * 12;
-            rangeSliderBar.setAttribute('max', rangeMax);
+            // let rangeMax = ((rangeMin / 12) + 3) * 12;
+            // rangeSliderBar.setAttribute('max', rangeMax);
 
-            let rangeMinLabel = document.getElementById("min-value");
-            rangeMinLabel.innerText = rangeMin;
+            // let rangeMinLabel = document.getElementById("min-value");
+            // rangeMinLabel.innerText = rangeMin;
 
-            let rangeMaxLabel = document.getElementById("max-value");
-            rangeMaxLabel.innerText = rangeMax;
+            // let rangeMaxLabel = document.getElementById("max-value");
+            // rangeMaxLabel.innerText = rangeMax;
+
+            updateRange();
 
             rangeSliderBar.setAttribute('value', rangeLabel.innerText);
             rangeSliderBar.value = parseInt(rangeLabel.innerText);
