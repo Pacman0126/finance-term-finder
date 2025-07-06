@@ -1,3 +1,19 @@
+ /* Google fonts import */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Playwrite+IE:wght@100..400&display=swap");
+
+/* CSS Variables */
+:root {
+  --primary-font: "Inter", sans-serif;
+  --secondary-font: "Macondo", cursive;
+  --primary-color: darkgreen; /* dark green */
+  --secondary-color: #aa9581; /* light brown */
+  --highlight-color: #416a8e; /* blue */
+  --highlight-color-light: #7a9fc2; /* light blue */
+  --primary-text-color: #5c2d2d;
+}
+ 
+ 
+ 
  /* .row>* {
     flex-shrink: 0;
     width: 100%;
@@ -5,10 +21,10 @@
 
 } */
 
-.input-fields .row {
+.input-fields .form-control {
 
     flex-shrink: 0;
-    width: 70%;
+    width: 50px;
     max-width: 100%;
 }
 
@@ -20,4 +36,24 @@
 label {
 
     max-width: 70%;
+}
+
+#welcome-text {
+  font-family: var(--primary-font), sans-serif;
+
+  font-weight: 100;
+  font-style: normal;
+  font-size: x-large;
+  color: var(--primary-text-color);
+
+  padding: 10px 10px 10px 10px;
+  line-height: 1em;
+  text-align: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 85%;
+
+  background-color: transparent;
+ 
 }
