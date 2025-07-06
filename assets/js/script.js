@@ -25,18 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // configure range slider events
 
     rangeInput.disabled = true;
-   // if (adjustPaymentsRadioOPtion1.checked) {
-        rangeInput.addEventListener("input", function () {
-            rangeLabel.innerText = rangeInput.value;
-            updateMonPayment();
-        });
 
-   // } else {
-
-      //  rangeInput.disabled = true;
-
-   // }
-
+    rangeInput.addEventListener("input", function () {
+        rangeLabel.innerText = rangeInput.value;
+        updateMonPayment();
+    });
 
 
     adjustPaymentsButton.style.display = "none";
@@ -60,12 +53,6 @@ function toggleRadioButtons(e) {
     let rangeInput = document.getElementById("paymentIntervals");
 
 
-    // const element = e.currentTarget;
-    // alert(element);
-
-    // const element1 = e.target.id;
-    // alert(element1);
-
     for (let radioButton of radioButtons) {
         if (radioButton.checked && (e.target !== radioButton)) {
             radioButton.checked = false;
@@ -83,8 +70,7 @@ function toggleRadioButtons(e) {
 }
 
 function updateMonPayment() {
-    //alert("working");
-    // e.preventDefault();
+
     let PV = parseFloat(document.getElementById("finance-amount").value);
     let rangeLabel = document.getElementById("intervals");
     let paymentIntervals = rangeLabel.innerText;
@@ -102,16 +88,14 @@ function updateMonPayment() {
 }
 
 function adjustPaymentScheduleUp() {
-    //alert("working");
-    // e.preventDefault();
+
     let PV = parseFloat(document.getElementById("finance-amount").value);
     let rangeLabel = document.getElementById("intervals");
-    //let paymentIntervals = rangeLabel.innerText;
+
     let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
     let monthlyPayment = document.getElementById("max-mon-payment");
     let rangeSliderBar = document.getElementById("paymentIntervals");
-    // let paymentIntervals = document.getElementById("calculatedIntervals").innerText;
-    //let paymentIntervals = rangeLabel.innerText;
+
     let paymentIntervals = rangeSliderBar.value;
 
     if (paymentIntervals % 12 === 0) {
@@ -120,7 +104,6 @@ function adjustPaymentScheduleUp() {
     } else {
         paymentIntervals = (Math.ceil(paymentIntervals / 12)) * 12;
     }
-    //paymentIntervals = (Math.floor(paymentIntervals / 12) + 1) * 12;
 
     rangeSliderBar.value = paymentIntervals;
     rangeLabel.innerText = paymentIntervals;
@@ -219,19 +202,16 @@ function calculateTerms(e) {
             adjustPaymentsButton.style.display = "block";
             break;
         case "adjustMaxMonPmt":
-            // code block
+
             switch (true) {
 
                 case document.getElementById("adjustPmtOnUserSelection").checked:
 
                     updateMonPayment();
 
-                    //paymentIntervals.innerText = rangeLabel.innerText;
-
-
                     //update slider bar 
                     let rangeSliderBar = document.getElementById("paymentIntervals");
-                    //rangeLabel.innerText = calculateNumberOfPayments();
+
                     paymentIntervals.innerText = rangeLabel.innerText;
 
 
@@ -268,7 +248,7 @@ function calculateTerms(e) {
 
             break;
         default:
-        // code block
+
 
 
     }

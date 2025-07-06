@@ -1,0 +1,23 @@
+ /* .row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+
+} */
+
+.input-fields .row {
+
+    flex-shrink: 0;
+    width: 70%;
+    max-width: 100%;
+}
+
+.form-check .form-check-input {
+    float: right;
+    margin-left: -1.5em;
+}
+
+label {
+
+    max-width: 70%;
+}
