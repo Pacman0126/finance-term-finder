@@ -3,9 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let rangeLabel = document.getElementById("intervals");
     let rangeInput = document.getElementById("paymentIntervals");
     let radioButtons = document.querySelectorAll(".form-check-input");
+    let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
+    let adjustPaymentsRadioOPtion1 = document.getElementById("adjustPmtOnUserSelection");
+    let inputFields = document.querySelectorAll(".form-control");
     //let rangeInput = document.querySelector('input');
     //calculateMonthlyPayment();
     //rangeInput.addEventListener("input", updateMonpayment);
+
+    for (let inputField of inputFields) {
+        inputField.addEventListener("mousedown", showHideButtons);
+    }
+
 
     for (let radioButton of radioButtons) {
         radioButton.addEventListener("click", toggleRadioButtons);
@@ -16,18 +24,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // configure range slider events
 
-    rangeInput.addEventListener("input", function () {
-        rangeLabel.innerText = rangeInput.value;
-        updateMonPayment();
-    });
+    rangeInput.disabled = true;
+   // if (adjustPaymentsRadioOPtion1.checked) {
+        rangeInput.addEventListener("input", function () {
+            rangeLabel.innerText = rangeInput.value;
+            updateMonPayment();
+        });
+
+   // } else {
+
+      //  rangeInput.disabled = true;
+
+   // }
 
 
+
+    adjustPaymentsButton.style.display = "none";
 
 })
+
+function showHideButtons() {
+    let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
+    let calcPaymentsButton = document.getElementById("calcOnUserSelection");
+
+    calcPaymentsButton.style.display = "block";
+    adjustPaymentsButton.style.display = "none";
+
+
+}
 
 function toggleRadioButtons(e) {
 
     let radioButtons = document.querySelectorAll(".form-check-input");
+    let adjustPaymentsRadioOPtion1 = document.getElementById("adjustPmtOnUserSelection");
+    let rangeInput = document.getElementById("paymentIntervals");
+
+
     // const element = e.currentTarget;
     // alert(element);
 
@@ -39,6 +71,14 @@ function toggleRadioButtons(e) {
             radioButton.checked = false;
         }
     }
+
+    if (adjustPaymentsRadioOPtion1.checked) {
+        rangeInput.disabled = false;
+    } else {
+        rangeInput.disabled = true;
+    }
+
+
 
 }
 
@@ -55,7 +95,7 @@ function updateMonPayment() {
     let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
     monthlyPayment.value = A.toFixed(2);
 
-    updateRange();
+    //updateRange();
     let paymentIntervalsElement = document.getElementById("calculatedIntervals");
     paymentIntervalsElement.innerText = rangeLabel.innerText;
 
@@ -90,36 +130,19 @@ function adjustPaymentScheduleUp() {
     let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
     monthlyPayment.value = A.toFixed(2);
 
-    //update range attributes and labels
-
-    // rangeSliderBar.setAttribute('value', rangeLabel.innerText);
-
-    // let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
-
-    // rangeSliderBar.setAttribute('min', rangeMin);
-
-    // let rangeMax = ((rangeMin / 12) + 3) * 12;
-    // rangeSliderBar.setAttribute('max', rangeMax);
-
-    // let rangeMinLabel = document.getElementById("min-value");
-    // rangeMinLabel.innerText = rangeMin;
-
-    // let rangeMaxLabel = document.getElementById("max-value");
-    // rangeMaxLabel.innerText = rangeMax;
     updateRange();
 
 }
 
 function adjustPaymentScheduleDown() {
-    //alert("working");
-    // e.preventDefault();
+
     let PV = parseFloat(document.getElementById("finance-amount").value);
+    let rangeSliderBar = document.getElementById("paymentIntervals");
     let rangeLabel = document.getElementById("intervals");
-    //let paymentIntervals = rangeLabel.innerText;
+
     let annualInterestRate = parseFloat(document.getElementById("annual-interest").value);
     let monthlyPayment = document.getElementById("max-mon-payment");
-    let rangeSliderBar = document.getElementById("paymentIntervals");
-    //let paymentIntervals = document.getElementById("calculatedIntervals").innerText;
+
     let paymentIntervals = rangeSliderBar.value;
 
     if (paymentIntervals % 12 === 0) {
@@ -138,26 +161,6 @@ function adjustPaymentScheduleDown() {
 
     let A = PV * ((1 + (.01 * annualInterestRate / paymentIntervals)) ** (paymentIntervals)) / paymentIntervals;
     monthlyPayment.value = A.toFixed(2);
-
-    //update range attributes and labels
-
-    // rangeSliderBar.setAttribute('value', rangeLabel.innerText);
-
-    // let rangeMin = Math.floor((parseFloat(paymentIntervals)) / 12 - 1) * 12;
-
-    // if (rangeMin < 12) {
-    //     rangeMin = 12;
-    // }
-    // rangeSliderBar.setAttribute('min', rangeMin);
-
-    // let rangeMax = ((rangeMin / 12) + 3) * 12;
-    // rangeSliderBar.setAttribute('max', rangeMax);
-
-    // let rangeMinLabel = document.getElementById("min-value");
-    // rangeMinLabel.innerText = rangeMin;
-
-    // let rangeMaxLabel = document.getElementById("max-value");
-    // rangeMaxLabel.innerText = rangeMax;
 
     updateRange();
 
@@ -198,7 +201,8 @@ function calculateTerms(e) {
     let computeAction = this.getAttribute("data-type");
     let rangeLabel = document.getElementById("intervals");
     let paymentIntervals = document.getElementById("calculatedIntervals");
-
+    let calcPaymentsButton = document.getElementById("calcOnUserSelection");
+    let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
 
     switch (computeAction) {
         case "calcOnUserSelection":
@@ -206,24 +210,13 @@ function calculateTerms(e) {
             rangeLabel.innerText = calculateNumberOfPayments();
             paymentIntervals.innerText = rangeLabel.innerText;
 
-
-            // let rangeMin = Math.floor((parseFloat(paymentIntervals.innerText)) / 12 - 1) * 12;
-            // rangeSliderBar.setAttribute('min', rangeMin);
-
-            // let rangeMax = ((rangeMin / 12) + 3) * 12;
-            // rangeSliderBar.setAttribute('max', rangeMax);
-
-            // let rangeMinLabel = document.getElementById("min-value");
-            // rangeMinLabel.innerText = rangeMin;
-
-            // let rangeMaxLabel = document.getElementById("max-value");
-            // rangeMaxLabel.innerText = rangeMax;
-
             updateRange();
 
             rangeSliderBar.setAttribute('value', rangeLabel.innerText);
             rangeSliderBar.value = parseInt(rangeLabel.innerText);
 
+            calcPaymentsButton.style.display = "none";
+            adjustPaymentsButton.style.display = "block";
             break;
         case "adjustMaxMonPmt":
             // code block
