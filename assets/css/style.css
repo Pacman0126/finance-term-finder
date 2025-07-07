@@ -67,8 +67,8 @@ body {
 
 .input-fields .form-control {
   flex-shrink: 0;
-  width: 50px;
-  max-width: 100%;
+  /* width: 50px; */
+  max-width: 100px;
   
 }
 
@@ -79,7 +79,7 @@ body {
 
 .form-check .form-check-input {
   float: right;
-  margin-left: -1.5em;
+  margin-left: 2em;
 
      width: 30px;
      height: 30px;
@@ -91,16 +91,10 @@ body {
 
 .row .form-check, .row .form-check-input {
 
-  align-items: center;
+  vertical-align: middle;
 } 
 
-.form-check-label {
 
-line-height:1em; 
-/* margin:2px 5px 3px 5px;  */
-padding:6px 5px 0px 5px;
-  
-}
 
 /* label {
   max-width: 70%;
@@ -130,8 +124,16 @@ padding:6px 5px 0px 5px;
 
 .col-form-label {
 
-  font-size: small;
+  font-size: medium;
   font-weight: bold;
+}
+
+.form-check-label {
+
+line-height:1em; 
+
+padding:12px 5px 0px 5px;
+  
 }
 
 

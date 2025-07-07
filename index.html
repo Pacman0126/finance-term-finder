@@ -30,10 +30,12 @@
     </header>
 
     <main>
-      <section>
+      <section class="input-fields">
         <form>
           <div class="row mb-3 justify-content-center">
-            <label for="finance-amount" class="col-7 col-sm-7 col-md-5 col-xl-4 col-form-label"
+            <label
+              for="finance-amount"
+              class="col-7 col-sm-7 col-md-6 col-lg-4 col-xl-4 col-form-label"
               >The amount you want to finance:</label
             >
             <div class="col-4 col-sm-2 col-md-2">
@@ -48,133 +50,56 @@
           </div>
 
           <div class="row mb-3 justify-content-center">
-            <label for="max-mon-payment" class="col-7 col-sm-7 col-md-5 col-xl-4 col-form-label"
+            <label
+              for="max-mon-payment"
+              class="col-7 col-sm-7 col-md-6 col-lg-4 col-xl-4 col-form-label"
               >The monthly payment not to exceed:</label
             >
             <div class="col-4 col-sm-2 col-md-2">
-            <input
-              type="number"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="max-mon-payment"
-            />
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                id="max-mon-payment"
+              />
             </div>
           </div>
 
           <div class="row mb-3 justify-content-center">
-            <label for="annual-interest" class="col-7 col-sm-7 col-md-5 col-xl-4 col-form-label"
+            <label
+              for="annual-interest"
+              class="col-7 col-sm-7 col-md-6 col-lg-4 col-xl-4 col-form-label"
               >Lender's annual interest rate (e.g. 3.00)</label
             >
             <div class="col-4 col-sm-2 col-md-2">
-            <input
-              type="number"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="annual-interest"
-            />
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                id="annual-interest"
+              />
             </div>
           </div>
-          <!-- <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >The amount you want to finance:</span
-            >
-            <input
-              type="number"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="finance-amount"
-            />
-          </div> -->
 
-          <!-- <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >The monthly payment you do not want to exceed:</span
-            >
-            <input
-              type="number"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="max-mon-payment"
-            />
-          </div> -->
-
-          <!-- <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >The lender's annual interest rate (e.g. 3.00)</span
-            >
-            <input
-              type="number"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="annual-interest"
-            />
-          </div> -->
-
-          <div class="container-fluid input-fields">
-            <!-- <div class="row mb-3 justify-content-center">
-              <div class="col-10">
-                <p>The amount you want to finance:</p>
-
-              </div>
-
-              <div class="col">
-                <input type="number" class="form-control" id="finance-amount" />
-              </div>
-            </div> -->
-
-            <!-- <div class="row mb-3 justify-content-center">
-              <label for="max-mon-payment" class="col-10 col-form-label"
-                >The monthly payment you do not want to exceed:</label
-              >
-              <div class="col-6">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="max-mon-payment"
-                />
-              </div>
-            </div> -->
-
-            <!-- <div class="row mb-3 justify-content-center">
-              <label for="annual-interest" class="col-10 col-form-label"
-                >The lender's annual interest rate (e.g. 3.00)</label
-              >
-              <div class="col-6">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="annual-interest"
-                />
-              </div>
-            </div> -->
-
-            <div class="controls-area">
-              <!-- <button data-type="addition" class="btn btn--big btn--green"> -->
-              <!-- <i class="fas fa-plus"></i> -->
-              <!-- </button> -->
-            </div>
-
+          <div class="container-fluid">
             <div class="row mb-3 justify-content-center">
-              <div class="col-10">
-                <p>
+              <div class="col-10 text-center">
+                <h3>
                   Number of monthly payments:
                   <span id="calculatedIntervals">3</span>
-                </p>
+                </h3>
 
-                <span>
-                  <button
-                    data-type="calcOnUserSelection"
-                    class="btn btn-primary btn-lg"
-                    id="calcOnUserSelection"
-                  >
-                    Calculate Number of Payments
-                  </button>
-                </span>
+                <!-- <span> -->
+                <button
+                  data-type="calcOnUserSelection"
+                  class="btn btn-primary btn-lg"
+                  id="calcOnUserSelection"
+                >
+                  Calculate Number of Payments
+                </button>
+                <!-- </span> -->
               </div>
             </div>
           </div>
@@ -202,10 +127,10 @@
             </div>
           </div>
 
-          <p>Make adjustments:</p>
           <div class="container-fluid">
             <div class="row justify-content-center">
-              <div class="col col-1 form-check">
+              <h4>Make adjustments:</h4>
+              <div class="col-1 form-check">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -214,14 +139,14 @@
                   value="option1"
                 />
               </div>
-              <div class="col">
+              <div class="col-10 col-sm-8 col-md-6 col-lg-5">
                 <label class="form-check-label" for="adjustPmtOnUserSelection">
                   Adjust maximum payment with slider above <br /><br />
                 </label>
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="col col-1 form-check">
+              <div class="col-1 form-check">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -230,7 +155,7 @@
                   value="option2"
                 />
               </div>
-              <div class="col">
+              <div class="col-10 col-sm-8 col-md-6 col-lg-5">
                 <label class="form-check-label" for="adjustPmtIntervalsDown">
                   Adjust max payment down to nearest 12 mon interval
                   <br /><br />
@@ -239,7 +164,7 @@
             </div>
 
             <div class="row justify-content-center">
-              <div class="col col-1 form-check">
+              <div class="col-1 form-check">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -248,7 +173,7 @@
                   value="option3"
                 />
               </div>
-              <div class="col">
+              <div class="col-10 col-sm-8 col-md-6 col-lg-5">
                 <label class="form-check-label" for="adjustPmtIntervalsUp">
                   Adjust max payment up to nearest 12 mon interval
                 </label>
@@ -265,20 +190,7 @@
               Adjust Terms
             </button>
           </span>
-          <!-- <div class="row mb-3">
-            <div class="col-sm-10 offset-sm-2">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="gridCheck1"
-                />
-                <label class="form-check-label" for="gridCheck1">
-                  Example checkbox
-                </label>
-              </div>
-            </div>
-          </div> -->
+
         </form>
       </section>
     </main>
