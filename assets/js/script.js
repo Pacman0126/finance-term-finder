@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let rangeInput = document.getElementById("paymentIntervals");
     let radioButtons = document.querySelectorAll(".form-check-input");
     let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
-    let adjustPaymentsRadioOPtion1 = document.getElementById("adjustPmtOnUserSelection");
+    //  let adjustPaymentsRadioOPtion1 = document.getElementById("adjustPmtOnUserSelection");
     let inputFields = document.querySelectorAll(".form-control");
     //let rangeInput = document.querySelector('input');
     //calculateMonthlyPayment();
@@ -40,9 +40,17 @@ function showHideButtons() {
     let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
     let calcPaymentsButton = document.getElementById("calcOnUserSelection");
 
-    calcPaymentsButton.style.display = "block";
-    adjustPaymentsButton.style.display = "none";
+    
+    if (window.getComputedStyle(calcPaymentsButton).display === "block") {
+        calcPaymentsButton.style.display = "block";
+        adjustPaymentsButton.style.display = "none";
 
+    } else {
+
+        calcPaymentsButton.style.display = "block";
+        adjustPaymentsButton.style.display = "none";
+
+    }
 
 }
 
@@ -194,7 +202,7 @@ function validateInputFields() {
             monthlyPayment.focus();
         } else { hasEmptyFields = false }
 
-        if (annualInterestRate === '') {
+        if (annualInterestRate.value === '') {
             annualInterestRate.focus();
         } else { hasEmptyFields = false }
 
@@ -215,7 +223,27 @@ function calculateTerms(e) {
     let calcPaymentsButton = document.getElementById("calcOnUserSelection");
     let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
 
-    validateInputFields();
+    let financeAmount = document.getElementById("finance-amount");
+    let monthlyPayment = document.getElementById("max-mon-payment");
+    let annualInterestRate = document.getElementById("annual-interest");
+
+    if (financeAmount.value === '') {
+        // e.preventDefault();
+        financeAmount.focus();
+        return;
+    }
+
+    if (monthlyPayment.value === '') {
+        monthlyPayment.focus();
+        return;
+    }
+
+    if (annualInterestRate.value === '') {
+        annualInterestRate.focus();
+        return;
+    }
+
+    //validateInputFields();
 
     switch (computeAction) {
         case "calcOnUserSelection":
