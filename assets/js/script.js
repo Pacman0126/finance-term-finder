@@ -177,6 +177,34 @@ function updateRange() {
 
 }
 
+function validateInputFields() {
+
+    let financeAmount = document.getElementById("finance-amount");
+    let monthlyPayment = document.getElementById("max-mon-payment");
+    let annualInterestRate = document.getElementById("annual-interest");
+
+    let hasEmptyFields = true;
+    while (hasEmptyFields === true) {
+
+        if (financeAmount.value === '') {
+            financeAmount.focus();
+        } else { hasEmptyFields = false }
+
+        if (monthlyPayment.value === '') {
+            monthlyPayment.focus();
+        } else { hasEmptyFields = false }
+
+        if (annualInterestRate === '') {
+            annualInterestRate.focus();
+        } else { hasEmptyFields = false }
+
+
+    }
+
+
+
+}
+
 
 function calculateTerms(e) {
 
@@ -186,6 +214,8 @@ function calculateTerms(e) {
     let paymentIntervals = document.getElementById("calculatedIntervals");
     let calcPaymentsButton = document.getElementById("calcOnUserSelection");
     let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
+
+    validateInputFields();
 
     switch (computeAction) {
         case "calcOnUserSelection":
