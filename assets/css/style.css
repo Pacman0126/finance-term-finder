@@ -1,10 +1,10 @@
 /* Google fonts import */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Playwrite+IE:wght@100..400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /* CSS Variables */
 :root {
   --primary-font: "Inter", sans-serif;
-  --secondary-font: "Macondo", cursive;
+  --secondary-font: "Caveat", sans-serif;
   --primary-color: darkgreen; /* dark green */
   --secondary-color: #aa9581; /* light brown */
   --highlight-color: #416a8e; /* blue */
@@ -13,11 +13,29 @@
 }
 
 body {
-
   /* background-color: rgb(252 , 245, 229); */
-   background-color: #eddecb;
+  background-color: #eddecb;
 }
 
+.monthly-payments {
+  margin-top: 20px;
+}
+
+.center-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  
+  
+}
+
+/* #calcOnUserSelection {
+display:inline-block;
+margin:0 auto;
+  margin-top: 20px;
+  width: 200px;
+} */
 
 /* .row>* {
     flex-shrink: 0;
@@ -50,8 +68,7 @@ body {
 } */
 
 .col-form-label {
-  font-family: Georgia, "Times New Roman", Times, serif;
-
+  font-family: var(--primary-font);
 
   font-weight: 100;
   font-style: normal;
@@ -65,15 +82,26 @@ body {
   line-height: 1.5;
 }
 
+.form-check-label {
+  font-family: var(--primary-font);
+
+  /* font-weight: 100; */
+  font-style: normal;
+  /* font-size: large; */
+  color: black;
+
+  font-size: medium;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
 .input-fields .form-control {
   flex-shrink: 0;
   /* width: 50px; */
   max-width: 100px;
-  
 }
 
 .form-control {
-
   background-color: #e1c7a7;
 }
 
@@ -81,20 +109,17 @@ body {
   float: right;
   margin-left: 2em;
 
-     width: 30px;
-     height: 30px;
-     border-radius: 50%;
-     border: 1px solid blue;
-     background-color: grey;
-
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid blue;
+  background-color: grey;
 }
 
-.row .form-check, .row .form-check-input {
-
+.row .form-check,
+.row .form-check-input {
   vertical-align: middle;
-} 
-
-
+}
 
 /* label {
   max-width: 70%;
@@ -102,11 +127,11 @@ body {
 } */
 
 #welcome-text {
-  font-family: var(--primary-font), sans-serif;
+  font-family: var(--secondary-font);
 
-  font-weight: 100;
+  font-weight: 600;
   font-style: normal;
-  font-size: x-large;
+  font-size: xx-large;
   color: var(--primary-text-color);
 
   padding: 10px 10px 10px 10px;
@@ -120,65 +145,52 @@ body {
   background-color: transparent;
 }
 
-@media screen and (min-width: 360px)  {
+@media screen and (min-width: 360px) {
+  .col-form-label {
+    font-size: medium;
+    font-weight: bold;
+  }
 
-.col-form-label {
-
-  font-size: medium;
-  font-weight: bold;
+  .form-check-label {
+    padding: 2px 5px 0px 5px;
+  }
 }
-
-.form-check-label {
-
-line-height:1em; 
-
-padding:12px 5px 0px 5px;
-  
-}
-
-
-}
-
-
 
 /* Intermediate breakpoint (529-767px) */
 @media screen and (min-width: 576px) {
-
-.col-form-label {
-
-  font-size: medium;
+  .col-form-label {
+    font-size: medium;
+  }
 }
 
+.form-check-label {
+  padding: 8px 5px 0px 5px;
 }
 
 /* Devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
-
   .col-form-label {
+    font-size: large;
+  }
 
-  font-size: large;
-}
-
+  .form-check-label {
+    padding: 8px 5px 0px 5px;
+  }
 }
 
 /* Devices (992px and larger) */
 @media screen and (min-width: 992px) {
-
-
-
+  .form-check-label {
+    padding: 10px 5px 0px 5px;
+  }
 }
 
 /* Devices (1200px and larger) */
 @media screen and (min-width: 1200px) {
-
-
 }
 
 /* Devices (1400px and larger) */
 @media screen and (min-width: 1400px) {
-
-
-
   .input-field {
     max-width: 350px;
   }
