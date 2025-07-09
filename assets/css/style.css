@@ -13,7 +13,7 @@
 }
 
 body {
-  /* background-color: rgb(252 , 245, 229); */
+  
   background-color: #eddecb;
 }
 
@@ -26,49 +26,13 @@ text-align: center;
 
 .center-button {
   display: flex;
-  /* flex-wrap: wrap; */
+  
   justify-content: center;
   margin-top: 30px;
   
   
 }
 
-/* #calcOnUserSelection {
-display:inline-block;
-margin:0 auto;
-  margin-top: 20px;
-  width: 200px;
-} */
-
-/* .row>* {
-    flex-shrink: 0;
-    width: 100%;
-    max-width: 100%;
-
-} */
-
-/* .form-text {
-  font-family: var(--primary-font);
-
-  font-weight: 100;
-  font-style: normal;
-  font-size: large;
-  color: #cef542;
-
-  padding: 10px 10px 10px 10px;
-
-  text-align: justify;
-  display: flex;
-  position: relative;
-  justify-content: left;
-
-  margin-top: 20px;
-  z-index: 200;
-
-  width: 100%;
-
-  background-color: transparent;
-} */
 
 .col-form-label {
   font-family: var(--primary-font);
@@ -88,9 +52,8 @@ margin:0 auto;
 .form-check-label {
   font-family: var(--primary-font);
 
-  /* font-weight: 100; */
   font-style: normal;
-  /* font-size: large; */
+  
   color: black;
 
   font-size: medium;
@@ -100,7 +63,7 @@ margin:0 auto;
 
 .input-fields .form-control {
   flex-shrink: 0;
-  /* width: 50px; */
+  
   max-width: 100px;
 }
 
@@ -123,11 +86,6 @@ margin:0 auto;
 .row .form-check-input {
   vertical-align: middle;
 }
-
-/* label {
-  max-width: 70%;
-  vertical-align: middle;
-} */
 
 #welcome-text {
   font-family: var(--secondary-font);

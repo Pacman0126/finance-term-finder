@@ -40,8 +40,8 @@ function showHideButtons() {
     let adjustPaymentsButton = document.getElementById("adjustMaxMonPmt");
     let calcPaymentsButton = document.getElementById("calcOnUserSelection");
 
-    
-    if (window.getComputedStyle(calcPaymentsButton).display === "block") {
+
+    if (window.getComputedStyle(calcPaymentsButton).display === "block") {  //simplify redundant structure
         calcPaymentsButton.style.display = "block";
         adjustPaymentsButton.style.display = "none";
 
